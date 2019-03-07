@@ -1,6 +1,6 @@
 # arithmetic.jl
 
-# Addition, substraction and other functions
+# Addition, subtraction and other functions
 for TM in tupleTMs
     @eval begin
         tmdata(f::$TM) = (f.x0, f.I)
@@ -29,7 +29,7 @@ for TM in tupleTMs
         +(b::T, a::$TM) where {T<:NumberNotSeries} = $TM(b+a.pol, a.rem, a.x0, a.I)
 
 
-        # Substraction
+        # Subtraction
         -(a::$TM) = $TM(-a.pol, -a.rem, a.x0, a.I)
 
         function -(a::$TM, b::$TM)
@@ -186,7 +186,7 @@ findfirst(a::TaylorModelN) = findfirst(a.pol)
     a.pol == b.pol && a.rem == b.rem && a.x0 == b.x0 && a.I == b.I
 
 
-# Addition and substraction
+# Addition and subtraction
 for op in (:+, :-)
     @eval begin
         $(op)(a::TaylorModelN) = TaylorModelN($(op)(a.pol), $(op)(a.rem), a.x0, a.I)
